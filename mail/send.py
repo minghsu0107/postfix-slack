@@ -61,24 +61,3 @@ def generateResult():
                                for value in data[key]])
 
     return SUMMARY.format(**data)
-
-def send_report(token_file, channel):
-    with open(token_file, 'r') as f:
-        token = f.read().strip()
-
-        client = WebClient(token=token)
-        client.chat_postMessage(
-            channel=channel,
-            blocks=[
-                {
-                    'type': 'section',
-                    'text': {
-                        'type': 'mrkdwn',
-                        'text': generateResult()
-                    }
-                }
-            ]
-        )
-
-if __name__ == "__main__":
-    send_report('nasalab-token', 'slackbot-test')
