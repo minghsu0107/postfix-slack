@@ -1,5 +1,4 @@
 from mail.qmonitor import store
-from slack import WebClient
 
 SUMMARY = '''
 *Total mails in queue*: `{total_mails}`
