@@ -1,4 +1,4 @@
-from qmonitor import store
+from mail.qmonitor import store
 from slack import WebClient
 
 SUMMARY = '''

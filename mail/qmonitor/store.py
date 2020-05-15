@@ -9,7 +9,7 @@ import email
 from email import header
 from collections import Counter
 from datetime import datetime, timedelta
-from qmonitor import CONFIG, debug
+from mail.qmonitor import CONFIG, debug
 
 
 class MailHeaders(object):
