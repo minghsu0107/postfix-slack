@@ -8,11 +8,12 @@ Generate a report for the current MX mail queue:
 ```
 Generate a report for the current SMTP mail queue:
 ```
+# slack command
 /smtpq
 ```
 ## Deployment (directly on mail servers)
 #### Slack App Configuration
-Alias command `/mxq` to `http://<mx_public_ip>/mailq`; `/smtpq` to `http://<smtp_public_ip>/mailq`.
+Alias command `/mxq` to `http://<mx-public-ip:port>/mailq`; `/smtpq` to `http://<smtp-public-ip:port>/mailq`.
 #### MX and SMTP
 Install dependencies:
 ```bash
@@ -32,7 +33,7 @@ Stop the server:
 ```
 ## Deployment (with reverse Proxy)
 #### Slack App Configuration
-Alias command `/mxq` to `http://<proxy ip>/mx/mailq`; `/smtpq` to `http://<proxy ip>/smtp/mailq`.
+Alias command `/mxq` to `http://<proxy-ip:port>/mx/mailq`; `/smtpq` to `http://<proxy-ip:port>/smtp/mailq`.
 #### MX and SMTP
 Install dependencies:
 ```bash
