@@ -5,6 +5,7 @@ import dotenv
 import hmac
 import hashlib
 import time
+import logging
 from functools import update_wrapper
 from slack import WebClient
 from slack.errors import SlackApiError
@@ -71,3 +72,7 @@ def showMailQueue():
         ]
     }
     return make_response(jsonify(payload), 200)
+
+gunicorn_logger = logging.getLogger('gunicorn.error')
+app.logger.handlers = gunicorn_logger.handlers
+app.logger.setLevel(gunicorn_logger.level)
