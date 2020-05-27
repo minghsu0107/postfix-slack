@@ -26,6 +26,8 @@ for i in range(len(s)):
     cur.append(s[i])
     if len(s[i].strip())>0:
         flag=True
+if flag:
+    parts.append(cur)
 section=[]
 for part in parts:
     header,content={},[]
