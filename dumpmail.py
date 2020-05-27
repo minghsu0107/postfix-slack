@@ -43,9 +43,9 @@ for part in parts:
     if 'Content-Type' in header:
         s=header['Content-Type'].split(';')
         header['Content-Type']=s[0].strip()
-        for i in s:
-            pos=i.find('=')
-            header[i[:pos].strip()]=i[pos+1:].strip()
+        for i in range(1,len(s)):
+            pos=s[i].find('=')
+            header[s[i][:pos].strip()]=s[i][pos+1:].strip()
     if 'Content-Transfer-Encoding' in header:
         if header['Content-Transfer-Encoding']=='base64':
             content=''.join(content).strip()
