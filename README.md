@@ -11,6 +11,13 @@ Generate a report for the current SMTP mail queue:
 # slack command
 /smtpq
 ```
+Gernerate a report form MX or smtp server and send it to slack
+(Routine check and report are set in crontab)
+```
+# execute on smtp
+python report-test.py --channel-name slackbot-test --whitelist /root/smtp-bot/whitelist --report
+```
+
 ## Deployment (directly on mail servers)
 #### Slack App Configuration
 Alias command `/mxq` to `http://<mx-public-ip:port>/mailq`; `/smtpq` to `http://<smtp-public-ip:port>/mailq`.

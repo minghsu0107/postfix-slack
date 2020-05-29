@@ -60,3 +60,28 @@ def generateResult():
                                for value in data[key]])
 
     return SUMMARY.format(**data)
+
+
+def getStatus():
+    pstore = store.PostqueueStore()
+    pstore.load()
+    data = pstore.summary()
+    data['total_mails_size'] /= 1024*1024.0
+    data['average_mail_size']/= 1024.0
+    data['max_mail_size'] /= 1024.0
+    data['min_mail_size'] /= 1024.0
+    data['u_s_domains'] = data['unique_sender_domains']
+    data['u_r_domains'] = data['unique_recipient_domains']
+    for status in data['top_status']:
+        data[status[0]+'_mails'] = status[1]
+    return data
+
+def serialize(data):
+    ranks = ['top_senders', 'top_sender_domains',
+             'top_recipients', 'top_recipient_domains']
+
+    for key in ranks: 
+        data[key] = "\n".join(["%-4s %s" % (value[1], value[0])
+                                for value in data[key]]) 
+
+    return data 
