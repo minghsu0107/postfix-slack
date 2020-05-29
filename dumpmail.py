@@ -14,7 +14,16 @@ cid=random.choice(tmp.mails).qid
 print('queue id:',cid)
 proc=subprocess.Popen(['postcat','-bq',cid],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 outs,errs=proc.communicate()
-s=outs.decode().split('\n')
+encs=['utf-8','big5']
+s=None
+for enc in encs:
+    try:
+        s=outs.decode(encoding=enc).split('\n')
+        break
+    except:
+        s=None
+if s is None:
+    s=outs.decode(encoding='utf-8',errors='replace')
 parts,cur,flag=[],[],False
 for i in range(len(s)):
     if i+1<len(s) and s[i][:2]=='--' and (len(s[i+1].strip())==0 or s[i+1][:7]=='Content'):
