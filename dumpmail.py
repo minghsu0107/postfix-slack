@@ -57,6 +57,10 @@ for part in parts:
         for i in range(1,len(s)):
             pos=s[i].find('=')
             header[s[i][:pos].strip()]=s[i][pos+1:].strip()
+    if 'Content-Type' not in header:
+        header['Content-Type']='test/plain'
+#    if 'charset' not in header:
+#        header['charset']='utf-8'
     if 'Content-Transfer-Encoding' in header:
         if header['Content-Transfer-Encoding']=='base64':
             content=''.join(content).strip()
