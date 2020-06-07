@@ -74,3 +74,8 @@ If there is `502 Bad Gateway` error while fowarding the request, it is possible 
 ```bash
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 ```
+Or if you use `firewalld`:
+```bash
+firewall-cmd --permanent --zone=public --add-port=80/tcp 
+firewall-cmd --reload
+```
