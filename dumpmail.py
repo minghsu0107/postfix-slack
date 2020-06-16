@@ -6,7 +6,7 @@ from mail.qmonitor.store import PostqueueStore
 
 def dumpmail(qid):
     #print('queue id:',cid)
-    proc=subprocess.Popen(['postcat','-bq',cid],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    proc=subprocess.Popen(['postcat','-bq',qid],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
     outs,errs=proc.communicate()
     encs=['utf-8','big5']
     s=None
