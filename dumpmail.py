@@ -106,3 +106,11 @@ def dump_mail_by_sender(sender,rand=False):
     else:
         qid=qida[0]
     return dumpmail(qid)
+
+def list_sender():
+    tmp=PostqueueStore()
+    tmp._load_from_postqueue(parse=True)
+    senders=set()
+    for mail in tmp.mails:
+        senders.insert(mail.sender)
+    return senders
