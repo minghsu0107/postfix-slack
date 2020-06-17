@@ -17,6 +17,13 @@ Gernerate a report form MX or smtp server and send it to slack
 # execute on smtp
 python report-test.py --channel-name slackbot-test --whitelist /root/smtp-bot/whitelist --report
 ```
+# extract mail content
+```python
+from dumpmail import *
+dumpmail(qid) # get mail content of mail qid
+dump_rand_mail() # get a random mail content
+dump_mail_by_sender(sender,rand) # get last mail content of specific sender, if rand == True then it will random select a mail of that sender.
+```
 
 ## Deployment (directly on mail servers)
 #### Slack App Configuration
