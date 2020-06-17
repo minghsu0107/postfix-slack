@@ -18,6 +18,7 @@ Gernerate a report form MX or smtp server and send it to slack
 python report-test.py --channel-name slackbot-test --whitelist /root/smtp-bot/whitelist --report
 ```
 # extract mail content
+Get the mail content of a certain mail, the return type is list of (header,content) which are different sections of the mail.
 ```python
 from dumpmail import *
 dumpmail(qid) # get mail content of mail qid
