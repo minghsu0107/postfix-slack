@@ -5,6 +5,21 @@ import random
 from mail.qmonitor.store import PostqueueStore
 
 def dumpmail(qid):
+    """
+    Dump mail content of specific queue id
+    return type: list of section where each section is a tuple (header,content)
+    header is a dict() where the most important one is 'Content-Type'
+    if header['Content-Type'] == 'text/plain':
+        content is plaintext (type:str)
+    if header['Content-Type'] == 'text/html':
+        content is html (type:str)
+    if header['Content-Type'] == 'image/*':
+        content is image binary (type:bytes)
+        the * is usually the extention of the image
+        it can be saved by:
+            with open('filename','wb') as f:
+                f.write(content)
+    """
     #print('queue id:',cid)
     proc=subprocess.Popen(['postcat','-bq',qid],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
     outs,errs=proc.communicate()
@@ -81,6 +96,10 @@ def dumpmail(qid):
     return section
 
 def dump_random_mail():
+    """
+    Randomly pick a mail in mail queue to dump
+    if mail queue is empty, return None
+    """
     tmp=PostqueueStore()
     tmp._load_from_postqueue(parse=True)
     if len(tmp.mails)==0:
@@ -90,9 +109,15 @@ def dump_random_mail():
     return dumpmail(qid)
 
 def dump_mail_by_sender(sender,rand=False):
+    """
+    Dump a mail of a specific sender
+    if rand==False it will dump the first mail of the sender
+    otherwise it will randomly dump a mail of the sender
+    if there is no mail of the sender, return None
+    """
     tmp=PostqueueStore()
     tmp._load_from_postqueue(parse=True)
-    if '@' not in sender:
+    if '@' not in sender and sender!='MAILER-DAEMON':
         sender+='@csie.ntu.edu.tw'
     qida=[]
     for mail in tmp.mails:
@@ -102,7 +127,7 @@ def dump_mail_by_sender(sender,rand=False):
         print(sender+' has no mail in queue')
         return None
     if rand:
-        qid=random.choice(quia)
+        qid=random.choice(qida)
     else:
         qid=qida[0]
     return dumpmail(qid)
@@ -112,5 +137,5 @@ def list_sender():
     tmp._load_from_postqueue(parse=True)
     senders=set()
     for mail in tmp.mails:
-        senders.insert(mail.sender)
+        senders.add(mail.sender)
     return senders
