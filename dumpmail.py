@@ -95,7 +95,7 @@ def dumpmail(qid):
     '''
     return section
 
-def dump_random_mail():
+def dump_rand_mail():
     """
     Randomly pick a mail in mail queue to dump
     if mail queue is empty, return None
