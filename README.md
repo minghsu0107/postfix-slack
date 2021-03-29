@@ -65,7 +65,7 @@ Stop the server:
 ```bash
 ./stop.sh
 ```
-#### MRTG
+#### Reverse Proxy
 First, have Nginx installed and configure the server (refer to `nginx/bot.conf`).
 
 Next, start the Nginx server by executing the `nginx` binary:
