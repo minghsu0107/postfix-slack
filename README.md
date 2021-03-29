@@ -66,7 +66,7 @@ Stop the server:
 ./stop.sh
 ```
 #### Reverse Proxy
-First, have Nginx installed and configure the server (refer to `nginx/bot.conf`).
+First, have Nginx installed and configure the server (refer to `nginx/bot.conf`). Remember to replace all placeholders with your own configurations.
 
 Next, start the Nginx server by executing the `nginx` binary:
 ```
