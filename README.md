@@ -1,4 +1,4 @@
-# Mail Server Monitor with Slack APIs
+# Postfix Slack
 A Postfix mail queue monitor integrated with slack commands.
 ## Usage
 Generate a report for the current MX mail queue:
